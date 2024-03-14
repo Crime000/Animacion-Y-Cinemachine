@@ -6,7 +6,7 @@ using Cinemachine;
 public class Cameras : MonoBehaviour
 {
     public string camaraTag;
-    public bool dollyCam = false;
+    public bool dollyCam = false, OrbitCam = false, TerceraPersona = false;
 
     public CinemachineVirtualCamera PrimeraCamara;
 
@@ -37,6 +37,42 @@ public class Cameras : MonoBehaviour
                       CambioDeCamara(activa);
                       dollyCam = false;
                  }
+
+        }
+        if (Input.GetKeyUp(KeyCode.O))
+        {
+            if (OrbitCam == false)
+            {
+                CinemachineVirtualCamera activa = camaras[4];
+                Debug.Log("esto es: " + activa.ToString());
+                CambioDeCamara(activa);
+                OrbitCam = true;
+            }
+            else if (OrbitCam == true)
+            {
+                CinemachineVirtualCamera activa = camaras[0];
+                Debug.Log("esto es: " + activa.ToString());
+                CambioDeCamara(activa);
+                OrbitCam = false;
+            }
+
+        }
+        if (Input.GetKeyUp(KeyCode.V))
+        {
+            if (TerceraPersona == false)
+            {
+                CinemachineVirtualCamera activa = camaras[5];
+                Debug.Log("esto es: " + activa.ToString());
+                CambioDeCamara(activa);
+                TerceraPersona = true;
+            }
+            else if (TerceraPersona == true)
+            {
+                CinemachineVirtualCamera activa = camaras[0];
+                Debug.Log("esto es: " + activa.ToString());
+                CambioDeCamara(activa);
+                TerceraPersona = false;
+            }
 
         }
     }

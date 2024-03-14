@@ -8,13 +8,16 @@ public class Personaje : MonoBehaviour
 
     Rigidbody fisicas;
     Animator animator;
+    public ParticleSystem particulas;
     public Transform jugadorTransform;
+    public string TriggerPart;
     public float velocidadNormal, velocidadActual, velRotacion;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        particulas.Stop();
         animator = GetComponent<Animator>();
         fisicas = GetComponent<Rigidbody>();
         velocidadActual = velocidadNormal;
@@ -30,7 +33,16 @@ public class Personaje : MonoBehaviour
         {
             jugadorTransform.Rotate(0, velRotacion * Time.deltaTime, 0);
         }
+        
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag(TriggerPart))
+        {
+            Debug.Log("Particulas Activadas");
+            particulas.Play();
+        }
     }
 
     private void FixedUpdate()                                                    //---Movimiento del jugador
